@@ -1,6 +1,6 @@
 # WebsiteMapper
 
-eng
+eng:
 
 The program creates a map of links on the site specified by the user.
 
@@ -31,7 +31,7 @@ Writing to a file saved in the site_maps folder is implemented in the com.gromma
 
 Mapping time depends on the size of the site, a small site is mapped for about 20 minutes.
 
-ru
+ru:
 
 Программа составляет карту ссылок на указанном пользователем сайте.
 
