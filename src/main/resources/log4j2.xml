@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="WARN">
+
+  <appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+      <MarkerFilter marker="CONSOLE" onMatch="ACCEPT" onMismatch="DENY"/>
+    </Console>
+    <Console name="ConsoleErr" target="SYSTEM_ERR">
+      <PatternLayout pattern="%d{HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+      <MarkerFilter marker="CONSOLE_ERR" onMatch="ACCEPT" onMismatch="DENY"/>
+    </Console>
+    <File name="Exception" fileName="logs/exception.log"
+      append="true"
+      immediateFlush="true"
+      createOnDemand="False">
+      <PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss} [%t] %-5level %logger{36} - %msg%n"/>
+      <MarkerFilter marker="EXCEPTION" onMatch="ACCEPT" onMismatch="DENY"/>
+    </File>
+
+  </appenders>
+  <loggers>
+    <root level="ALL">
+      <appender-ref ref="Console" level="INFO"/>
+      <appender-ref ref="Exception" level="ERROR"/>
+      <appender-ref ref="ConsoleErr" level="ERROR"/>
+    </root>
+  </loggers>
+</configuration>
