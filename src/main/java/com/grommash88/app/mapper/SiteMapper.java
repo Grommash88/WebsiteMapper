@@ -2,12 +2,10 @@ package com.grommash88.app.mapper;
 
 import com.grommash88.app.util.Validator;
 import java.util.Comparator;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveAction;
-import java.util.stream.Collectors;
 
 public class SiteMapper extends RecursiveAction {
 
@@ -15,6 +13,7 @@ public class SiteMapper extends RecursiveAction {
   private static String startPage;
   private static final CopyOnWriteArrayList<String> REF_LIST = new CopyOnWriteArrayList<>();
   private static final CopyOnWriteArraySet<String> PROCESSED_REFS = new CopyOnWriteArraySet<>();
+
 
   public SiteMapper(String pathToTheProcessedSite, String startPage) {
 
@@ -30,6 +29,7 @@ public class SiteMapper extends RecursiveAction {
         .forEachOrdered(stringBuilder::append);
     return stringBuilder.toString();
   }
+
 
   @Override
   protected void compute() {
@@ -58,12 +58,12 @@ public class SiteMapper extends RecursiveAction {
             .concat("\t".concat(ref))));
       }
     }
-    List<ForkJoinTask<Void>> taskList = this.sitePage.getChildren().stream()
+    this.sitePage.getChildren().stream()
         .filter(ref -> Validator.isNotProcessedValidRef(PROCESSED_REFS, ref))
         .map(ref -> new SiteMapper(ref, startPage))
-        .map(ForkJoinTask::fork)
-        .collect(Collectors.toList());
-    taskList.forEach(ForkJoinTask::join);
+        .peek(ForkJoinTask::fork)
+        .forEachOrdered(ForkJoinTask::join);
+
   }
 
   private int index(String sitePageAddress) {
@@ -71,7 +71,7 @@ public class SiteMapper extends RecursiveAction {
     String parent = REF_LIST.stream()
         .filter(elem -> sitePageAddress.equals(elem.trim()))
         .min(Comparator.comparing(String::length))
-        .orElseThrow(IllegalArgumentException::new);
+        .orElseThrow(()-> new IllegalArgumentException(sitePageAddress));
     return REF_LIST.indexOf(parent);
   }
 }

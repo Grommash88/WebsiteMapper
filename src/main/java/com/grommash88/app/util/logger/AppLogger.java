@@ -1,4 +1,4 @@
-package com.grommash88.app.logger;
+package com.grommash88.app.util.logger;
 
 import java.util.Arrays;
 import org.apache.logging.log4j.LogManager;
@@ -12,11 +12,15 @@ public class AppLogger {
   private static final Marker CONSOLE = MarkerManager.getMarker("CONSOLE");
   private static final Marker CONSOLE_ERR = MarkerManager.getMarker("CONSOLE_ERR");
   private static final Logger LOGGER = LogManager.getRootLogger();
-
+  private static final StringBuilder sb = new StringBuilder();
   public static void logException(Exception e) {
 
-    LOGGER.error(EXCEPTION, Arrays.toString(e.getStackTrace()).concat(System.lineSeparator())
-        .concat(e.getMessage()));
+    Arrays.stream(e.getStackTrace())
+        .map(StackTraceElement::toString)
+        .map(s-> s.concat(System.lineSeparator()))
+        .forEachOrdered(sb::append);
+
+    LOGGER.error(EXCEPTION, e.getMessage().concat(System.lineSeparator().concat(sb.toString())));
     logErrMsg(e.getMessage());
   }
 
@@ -27,6 +31,6 @@ public class AppLogger {
 
   public static void logErrMsg(String message) {
 
-    LOGGER.error(CONSOLE_ERR, message);
+    LOGGER.debug(CONSOLE_ERR, message);
   }
 }

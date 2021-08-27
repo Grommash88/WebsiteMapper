@@ -1,4 +1,4 @@
-package com.grommash88.app.logger;
+package com.grommash88.app.util.logger;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -21,8 +21,8 @@ Connection settings are described in the com.grommash88.app.util.properties.Prop
 
 String validation is implemented in the com.grommash88.app.util.Validator class.
 
-Logging of messages and exceptions is implemented in the com.grommash88.app.logger.AppLogger class,
-log messages are described in the com.grommash88.app.logger.Msgs class.
+Logging of messages and exceptions is implemented in the com.grommash88.app.util.logger.AppLogger class,
+log messages are described in the com.grommash88.app.util.logger.Msgs class.
 Logging settings are described in the srs / main / resources / log4j2.xml file
 
 The com.grommash88.app.exceptions.PageNotFoundException class is implemented to handle 404s from the site.
@@ -52,8 +52,8 @@ com.grommash88.app.mapper.Node, реализовано получение ссы
 
 Валидация строк реализована в классе com.grommash88.app.util.Validator.
 
-Логирование сообщений и исключений реализовано в классе com.grommash88.app.logger.AppLogger,
-сообщения логирования описаны в классе com.grommash88.app.logger.Msgs.
+Логирование сообщений и исключений реализовано в классе com.grommash88.app.util.logger.AppLogger,
+сообщения логирования описаны в классе com.grommash88.app.util.logger.Msgs.
 Настройки логирования описаны в файле srs/main/resources/log4j2.xml
 
 Класс com.grommash88.app.exceptions.PageNotFoundException реализован для обработки 404 от сайта.

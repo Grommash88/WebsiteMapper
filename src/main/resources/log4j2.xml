@@ -23,7 +23,7 @@
     <root level="ALL">
       <appender-ref ref="Console" level="INFO"/>
       <appender-ref ref="Exception" level="ERROR"/>
-      <appender-ref ref="ConsoleErr" level="ERROR"/>
+      <appender-ref ref="ConsoleErr" level="DEBUG"/>
     </root>
   </loggers>
 </configuration>

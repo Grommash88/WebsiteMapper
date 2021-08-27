@@ -1,8 +1,8 @@
 package com.grommash88.app.mapper;
 
 import com.grommash88.app.exceptions.PageNotFoundException;
-import com.grommash88.app.logger.AppLogger;
-import com.grommash88.app.logger.Msgs;
+import com.grommash88.app.util.logger.AppLogger;
+import com.grommash88.app.util.logger.Msgs;
 import com.grommash88.app.util.Validator;
 import com.grommash88.app.util.properties.Props;
 import java.io.IOException;
